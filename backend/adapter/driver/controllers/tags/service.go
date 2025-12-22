@@ -29,7 +29,7 @@ func NewService(uc tag.UseCase) *Service {
 // @Router      /label/category/page [get]
 func (s *Service) Create(c *gin.Context) {
 	req := &tag.CreateTagReq{}
-	if _, err := validator.BindQueryAndValid(c, req); err != nil {
+	if _, err := validator.BindJsonAndValid(c, req); err != nil {
 		ginx.ResErrJson(c, errorcode.PublicInvalidParameter.Detail(err))
 		return
 	}
@@ -39,4 +39,29 @@ func (s *Service) Create(c *gin.Context) {
 		return
 	}
 	ginx.ResOKJson(c, nil)
+}
+
+// List
+// @Summary     内部系统使用标签页面分页标签分类
+// @Description 内部系统使用标签页面分页标签分类
+// @Tags 业务标签管理
+// @Accept      x-www-form-urlencoded
+// @Produce     json
+// @Param       _  query    domain.QueryCategoryPageReq  false "查询参数"
+// @Success     200 {object} domain.QueryCategoryPageResp "成功响应参数"
+// @Failure     400 {object} rest.HttpError     "失败响应参数"
+// @Router      /label/category/page [get]
+func (s *Service) List(c *gin.Context) {
+	req := &tag.ListTagReq{}
+	if _, err := validator.BindQueryAndValid(c, req); err != nil {
+		ginx.ResErrJson(c, errorcode.PublicInvalidParameter.Detail(err))
+		return
+	}
+	resp, err := s.uc.List(c, req)
+	if err != nil {
+		c.Writer.WriteHeader(http.StatusBadRequest)
+		ginx.ResErrJson(c, err)
+		return
+	}
+	ginx.ResOKJson(c, resp)
 }

@@ -12,7 +12,7 @@ type IRouter interface {
 }
 
 type Router struct {
-	tagController tags.Service
+	TagController *tags.Service
 }
 
 func (r *Router) Register(engine *gin.Engine) {
@@ -21,7 +21,8 @@ func (r *Router) Register(engine *gin.Engine) {
 		//标签
 		tag := router.Group("/tags")
 		{
-			tag.GET("", r.tagController.Create) //create
+			tag.POST("", r.TagController.Create) //新建
+			tag.GET("", r.TagController.List)    //列表
 		}
 	}
 

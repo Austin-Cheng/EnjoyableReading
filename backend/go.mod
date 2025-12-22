@@ -6,12 +6,14 @@ replace github.com/dulisoft/spirit v0.0.0-20251217151503-dbd0e1b704bb => ./../..
 
 require (
 	github.com/dulisoft/spirit v0.0.0-20251217151503-dbd0e1b704bb
+	github.com/gin-gonic/gin v1.9.1
 	github.com/golang-migrate/migrate/v4 v4.19.1
 	github.com/google/wire v0.7.0
-	github.com/uptrace/opentelemetry-go-extra/otelgorm v0.3.2
-	gorm.io/driver/mysql v1.5.6
-	gorm.io/gen v0.3.27
-	gorm.io/gorm v1.25.12
+	github.com/uptrace/opentelemetry-go-extra/otelgorm v0.1.17
+	github.com/zeromicro/go-zero v1.6.4
+	gorm.io/driver/mysql v1.4.7
+	gorm.io/gen v0.3.21
+	gorm.io/gorm v1.24.0
 )
 
 require (
@@ -23,7 +25,6 @@ require (
 	github.com/fsnotify/fsnotify v1.7.0 // indirect
 	github.com/gabriel-vasile/mimetype v1.4.3 // indirect
 	github.com/gin-contrib/sse v0.1.0 // indirect
-	github.com/gin-gonic/gin v1.9.1 // indirect
 	github.com/go-kratos/kratos/v2 v2.7.3 // indirect
 	github.com/go-logr/logr v1.4.3 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
@@ -33,10 +34,14 @@ require (
 	github.com/go-sql-driver/mysql v1.8.1 // indirect
 	github.com/goccy/go-json v0.10.2 // indirect
 	github.com/google/uuid v1.6.0 // indirect
+	github.com/jackc/chunkreader/v2 v2.0.1 // indirect
+	github.com/jackc/pgconn v1.14.3 // indirect
+	github.com/jackc/pgio v1.0.0 // indirect
 	github.com/jackc/pgpassfile v1.0.0 // indirect
+	github.com/jackc/pgproto3/v2 v2.3.3 // indirect
 	github.com/jackc/pgservicefile v0.0.0-20231201235250-de7065d80cb9 // indirect
-	github.com/jackc/pgx/v5 v5.5.5 // indirect
-	github.com/jackc/puddle/v2 v2.2.1 // indirect
+	github.com/jackc/pgtype v1.14.0 // indirect
+	github.com/jackc/pgx/v4 v4.18.2 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.5 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
@@ -55,7 +60,6 @@ require (
 	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
 	github.com/ugorji/go/codec v1.2.11 // indirect
 	github.com/uptrace/opentelemetry-go-extra/otelsql v0.3.2 // indirect
-	github.com/zeromicro/go-zero v1.6.4 // indirect
 	go.opentelemetry.io/auto/sdk v1.1.0 // indirect
 	go.opentelemetry.io/otel v1.37.0 // indirect
 	go.opentelemetry.io/otel/metric v1.37.0 // indirect
@@ -73,9 +77,9 @@ require (
 	golang.org/x/tools v0.38.0 // indirect
 	google.golang.org/protobuf v1.36.7 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
-	gorm.io/datatypes v1.2.4 // indirect
-	gorm.io/driver/postgres v1.5.7 // indirect
-	gorm.io/driver/sqlite v1.5.5 // indirect
+	gorm.io/datatypes v1.0.7 // indirect
+	gorm.io/driver/postgres v1.4.4 // indirect
+	gorm.io/driver/sqlite v1.4.4 // indirect
 	gorm.io/hints v1.1.0 // indirect
-	gorm.io/plugin/dbresolver v1.5.0 // indirect
+	gorm.io/plugin/dbresolver v1.3.0 // indirect
 )

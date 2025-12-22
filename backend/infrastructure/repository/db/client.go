@@ -2,6 +2,7 @@ package db
 
 import (
 	"context"
+	"github.com/Austin-Cheng/EnjoyableReading/common/settings"
 	"sync"
 	"time"
 
@@ -32,13 +33,14 @@ func (d *Data) WithContext(ctx context.Context) *gorm.DB {
 	return d.DB.WithContext(ctx)
 }
 
-// NewData .
-func NewData(dbOpts *database.Options) (*Data, func(), error) {
+// NewClient .
+func NewClient() (*Data, func(), error) {
+	dbOpts := settings.GetConfig().Database
 	var err error
 	var client *gorm.DB
 	once.Do(func() {
 		dbOpts.MaxConnectionLifeTime = dbOpts.MaxConnectionLifeTime * time.Second
-		client, err = database.New(dbOpts)
+		client, err = database.New(&dbOpts)
 
 	})
 	if err != nil {

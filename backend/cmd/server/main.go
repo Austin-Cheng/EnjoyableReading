@@ -28,7 +28,7 @@ func init() {
 // @description AnyFabric标签和数据血缘，大数据基础服务
 // @BasePath /api/basic-bigdata-service/v1
 func main() {
-	//runtime.GOMAXPROCS(runtime.NumCPU())
+	runtime.GOMAXPROCS(runtime.NumCPU())
 	//初始化配置
 	config := settings.InitConfig(appInfo)
 
@@ -36,7 +36,7 @@ func main() {
 	// 初始化验证器
 	validator.SetupValidator()
 	//app, cleanup, err := mock.InitApp(&bc)
-	app, cleanup, err := InitApp(config, &config.Database)
+	app, cleanup, err := InitApp(config)
 	if err != nil {
 		panic(err)
 	}

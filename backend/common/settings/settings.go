@@ -6,7 +6,6 @@ import (
 	"sync"
 
 	"github.com/dulisoft/spirit/core/common"
-	"github.com/dulisoft/spirit/core/mq"
 )
 
 var (
@@ -37,9 +36,7 @@ func ResetConfig(conf *Config) {
 type Config struct {
 	Server   common.ServerConf `json:"server"`
 	Database database.Options  `json:"database"`
-	MQ       mq.MQConf         `json:"mq"`
-	zapx.LogConfigs
-	DepServices DepServices `json:"depServices"`
+	Logs     []zapx.Options    `json:"logs"`
 }
 
 type DepServices struct {

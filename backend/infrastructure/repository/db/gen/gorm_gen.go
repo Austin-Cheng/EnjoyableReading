@@ -61,6 +61,7 @@ func (g *Generator) genModels(ts ...string) []any {
 		}
 		tableModels = append(tableModels, g.g.GenerateModel(tableName, g.opts...))
 	}
+	g.g.Execute()
 	return tableModels
 }
 
@@ -72,7 +73,7 @@ func (g *Generator) GenTables(ts ...string) {
 }
 
 func main() {
-	ts := []string{"tags"}
+	ts := []string{"t_tags", "t_papers", "t_paper_tags"}
 	g := NewGenerator(gen.WithMethod(GenIDMethod{}))
 	g.GenTables(ts...)
 }
