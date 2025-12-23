@@ -12,11 +12,11 @@ const TableNameTTag = "t_tags"
 
 // TTag mapped from table <t_tags>
 type TTag struct {
-	ID        int32      `gorm:"column:id;primaryKey;autoIncrement:true" json:"id"` // 主键
+	ID        int64      `gorm:"column:id;primaryKey;autoIncrement:true" json:"id"` // 主键
 	Name      string     `gorm:"column:name;not null" json:"name"`                  // 名称
-	ParentID  *int32     `gorm:"column:parent_id" json:"parent_id"`
-	CreatedAt *time.Time `gorm:"column:created_at;not null;default:CURRENT_TIMESTAMP(3)" json:"created_at"` // 创建时间
-	UpdatedAt *time.Time `gorm:"column:updated_at;not null;default:CURRENT_TIMESTAMP(3)" json:"updated_at"` // 更新时间
+	ParentID  int64    `gorm:"column:parent_id" json:"parent_id"`
+	CreatedAt time.Time `gorm:"column:created_at;not null;default:CURRENT_TIMESTAMP(3)" json:"created_at"` // 创建时间
+	UpdatedAt time.Time `gorm:"column:updated_at;not null;default:CURRENT_TIMESTAMP(3)" json:"updated_at"` // 更新时间
 }
 
 // TableName TTag's table name

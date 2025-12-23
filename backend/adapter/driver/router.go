@@ -21,8 +21,11 @@ func (r *Router) Register(engine *gin.Engine) {
 		//标签
 		tag := router.Group("/tags")
 		{
-			tag.POST("", r.TagController.Create) //新建
-			tag.GET("", r.TagController.List)    //列表
+			tag.POST("", r.TagController.Create)       //新建
+			tag.PUT("/:id", r.TagController.Update)    //更新
+			tag.GET("/:id", r.TagController.Get)       //新建
+			tag.DELETE("/:id", r.TagController.Delete) //新建
+			tag.GET("", r.TagController.List)          //列表
 		}
 	}
 

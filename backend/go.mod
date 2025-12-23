@@ -2,13 +2,12 @@ module github.com/Austin-Cheng/EnjoyableReading
 
 go 1.24.7
 
-replace github.com/dulisoft/spirit v0.0.0-20251217151503-dbd0e1b704bb => ./../../spirit
-
 require (
-	github.com/dulisoft/spirit v0.0.0-20251217151503-dbd0e1b704bb
+	github.com/dulisoft/spirit v0.0.0-20251223134736-9de55a53c69b
 	github.com/gin-gonic/gin v1.9.1
 	github.com/golang-migrate/migrate/v4 v4.19.1
 	github.com/google/wire v0.7.0
+	github.com/samber/lo v1.51.0
 	github.com/uptrace/opentelemetry-go-extra/otelgorm v0.1.17
 	github.com/zeromicro/go-zero v1.6.4
 	gorm.io/driver/mysql v1.4.7
