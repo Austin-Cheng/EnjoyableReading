@@ -8,4 +8,6 @@ var (
 	PublicInvalidParameter     = publicModule.Description("PublicInvalidParameter", "内部错误")
 	PublicDatabaseError        = publicModule.Description("PublicDatabaseError", "数据库异常")
 	PublicInvalidParameterJson = publicModule.Description("PublicInvalidParameterJson", "参数值校验不通过：json格式错误")
+	PublicTagExists            = publicModule.Description("PublicTagExists", "标签名称重复")
+	PublicTagNotExists         = publicModule.Description("PublicTagNotExists", "标签不存在")
 )

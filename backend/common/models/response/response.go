@@ -13,3 +13,7 @@ type IDNameResp struct {
 	ID   int64  `json:"id" binding:"required" example:"1"`                        // 对象ID
 	Name string `json:"name" binding:"required,min=1,max=128" example:"obj_name"` // 对象名称
 }
+
+func ToIDResp(id int64) IDResp {
+	return IDResp{ID: id}
+}

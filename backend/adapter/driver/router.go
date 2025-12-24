@@ -23,8 +23,8 @@ func (r *Router) Register(engine *gin.Engine) {
 		{
 			tag.POST("", r.TagController.Create)       //新建
 			tag.PUT("/:id", r.TagController.Update)    //更新
-			tag.GET("/:id", r.TagController.Get)       //新建
-			tag.DELETE("/:id", r.TagController.Delete) //新建
+			tag.GET("/:id", r.TagController.Get)       //详情
+			tag.DELETE("/:id", r.TagController.Delete) //删除
 			tag.GET("", r.TagController.List)          //列表
 		}
 	}

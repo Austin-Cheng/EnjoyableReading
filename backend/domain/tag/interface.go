@@ -7,7 +7,7 @@ import (
 )
 
 type UseCase interface {
-	Create(ctx context.Context, tag *dto.CreateTagReq) error
+	Create(ctx context.Context, tag *dto.CreateTagReq) (int64, error)
 	Update(ctx context.Context, tag *dto.UpdateTagReq) error
 	Get(ctx context.Context, id int64) (*dto.Tag, error)
 	Delete(ctx context.Context, id int64) error
