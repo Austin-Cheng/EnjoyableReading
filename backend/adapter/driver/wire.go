@@ -1,6 +1,7 @@
 package driver
 
 import (
+	"github.com/Austin-Cheng/EnjoyableReading/adapter/driver/controllers/papers"
 	"github.com/Austin-Cheng/EnjoyableReading/adapter/driver/controllers/tags"
 	"github.com/google/wire"
 )
@@ -17,4 +18,5 @@ var routerSet = wire.NewSet(
 
 var controllerSet = wire.NewSet(
 	tags.NewService,
+	papers.NewService,
 )

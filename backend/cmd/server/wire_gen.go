@@ -9,8 +9,10 @@ package main
 import (
 	"github.com/Austin-Cheng/EnjoyableReading/adapter/driven/repo/impl"
 	"github.com/Austin-Cheng/EnjoyableReading/adapter/driver"
+	"github.com/Austin-Cheng/EnjoyableReading/adapter/driver/controllers/papers"
 	"github.com/Austin-Cheng/EnjoyableReading/adapter/driver/controllers/tags"
 	"github.com/Austin-Cheng/EnjoyableReading/common/settings"
+	impl3 "github.com/Austin-Cheng/EnjoyableReading/domain/paper/impl"
 	impl2 "github.com/Austin-Cheng/EnjoyableReading/domain/tag/impl"
 	"github.com/Austin-Cheng/EnjoyableReading/infrastructure/repository/db"
 	"github.com/google/wire"
@@ -27,8 +29,12 @@ func InitApp(conf *settings.Config) (*AppRunner, func(), error) {
 	tag := impl.NewTag(gormDB)
 	useCase := impl2.NewTag(tag)
 	service := tags.NewService(useCase)
+	paper := impl.NewPaper(gormDB)
+	paperUseCase := impl3.NewPaper(paper)
+	papersService := papers.NewService(paperUseCase)
 	router := driver.Router{
-		TagController: service,
+		TagController:   service,
+		PaperController: papersService,
 	}
 	server := driver.NewHttpServer(router)
 	app := newApp(server)

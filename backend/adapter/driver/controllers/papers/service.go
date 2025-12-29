@@ -1,39 +1,37 @@
-package tags
+package papers
 
 import (
 	"net/http"
 
-	"github.com/Austin-Cheng/EnjoyableReading/common/models/response"
-
 	"github.com/Austin-Cheng/EnjoyableReading/common/errorcode"
 	"github.com/Austin-Cheng/EnjoyableReading/common/models/dto"
 	"github.com/Austin-Cheng/EnjoyableReading/common/models/request"
-	"github.com/Austin-Cheng/EnjoyableReading/domain/tag"
+	"github.com/Austin-Cheng/EnjoyableReading/domain/paper"
 	"github.com/dulisoft/spirit/core/transport/rest/ginx"
 	"github.com/dulisoft/spirit/core/validator"
 	"github.com/gin-gonic/gin"
 )
 
 type Service struct {
-	uc tag.UseCase
+	uc paper.UseCase
 }
 
-func NewService(uc tag.UseCase) *Service {
+func NewService(uc paper.UseCase) *Service {
 	return &Service{uc: uc}
 }
 
 // Create
-// @Summary     新建标签
-// @Description 新建业务标签
-// @Tags 业务标签管理
+// @Summary     新建文章
+// @Description 新建文章
+// @Tags 文章管理
 // @Accept      json
 // @Produce     json
-// @Param       _  body     dto.CreateTagReq  true "新建标签请求参数"
-// @Success     200 {object} nil                "成功响应"
+// @Param       _  body     dto.CreatePaperReq  true "新建文章请求参数"
+// @Success     200 {object} map[string]int64    "成功响应"
 // @Failure     400 {object} ginx.HttpError     "失败响应参数"
-// @Router      /tag [post]
+// @Router      /paper [post]
 func (s *Service) Create(c *gin.Context) {
-	req := &dto.CreateTagReq{}
+	req := &dto.CreatePaperReq{}
 	if _, err := validator.BindJsonAndValid(c, req); err != nil {
 		ginx.ResErrJson(c, errorcode.PublicInvalidParameter.Detail(err))
 		return
@@ -44,21 +42,21 @@ func (s *Service) Create(c *gin.Context) {
 		ginx.ResErrJson(c, err)
 		return
 	}
-	ginx.ResOKJson(c, response.ToIDResp(id))
+	ginx.ResOKJson(c, gin.H{"id": id})
 }
 
 // Update
-// @Summary     更新标签
-// @Description 更新业务标签信息
-// @Tags 业务标签管理
+// @Summary     更新文章
+// @Description 更新文章信息
+// @Tags 文章管理
 // @Accept      json
 // @Produce     json
-// @Param       _  body     dto.UpdateTagReq  true "更新标签请求参数"
+// @Param       _  body     dto.UpdatePaperReq  true "更新文章请求参数"
 // @Success     200 {object} nil               "成功响应"
 // @Failure     400 {object} ginx.HttpError    "失败响应参数"
-// @Router      /tag [put]
+// @Router      /paper [put]
 func (s *Service) Update(c *gin.Context) {
-	req := &dto.UpdateTagReq{}
+	req := &dto.UpdatePaperReq{}
 	if _, err := validator.BindJsonAndValid(c, req); err != nil {
 		ginx.ResErrJson(c, errorcode.PublicInvalidParameter.Detail(err))
 		return
@@ -72,18 +70,18 @@ func (s *Service) Update(c *gin.Context) {
 }
 
 // Get
-// @Summary     获取标签
-// @Description 根据ID获取业务标签详情
-// @Tags 业务标签管理
+// @Summary     获取文章详情
+// @Description 根据ID获取文章详情
+// @Tags 文章管理
 // @Accept      json
 // @Produce     json
-// @Param       id path     int64  true "标签ID"
-// @Success     200 {object} dto.Tag "标签详情"
+// @Param       id path     int64  true "文章ID"
+// @Success     200 {object} dto.Paper "文章详情"
 // @Failure     400 {object} ginx.HttpError "失败响应参数"
-// @Router      /tag/{id} [get]
+// @Router      /paper/{id} [get]
 func (s *Service) Get(c *gin.Context) {
 	req := &request.IDReq{}
-	if _, err := validator.BindJsonAndValid(c, req); err != nil {
+	if _, err := validator.BindUriAndValid(c, req); err != nil {
 		ginx.ResErrJson(c, errorcode.PublicInvalidParameter.Detail(err))
 		return
 	}
@@ -97,18 +95,18 @@ func (s *Service) Get(c *gin.Context) {
 }
 
 // Delete
-// @Summary     删除标签
-// @Description 根据ID删除业务标签
-// @Tags 业务标签管理
+// @Summary     删除文章
+// @Description 根据ID删除文章
+// @Tags 文章管理
 // @Accept      json
 // @Produce     json
-// @Param       id path     int64  true "标签ID"
+// @Param       id path     int64  true "文章ID"
 // @Success     200 {object} nil    "成功响应"
 // @Failure     400 {object} ginx.HttpError "失败响应参数"
-// @Router      /tag/{id} [delete]
+// @Router      /paper/{id} [delete]
 func (s *Service) Delete(c *gin.Context) {
 	req := &request.IDReq{}
-	if _, err := validator.BindJsonAndValid(c, req); err != nil {
+	if _, err := validator.BindUriAndValid(c, req); err != nil {
 		ginx.ResErrJson(c, errorcode.PublicInvalidParameter.Detail(err))
 		return
 	}
@@ -121,17 +119,17 @@ func (s *Service) Delete(c *gin.Context) {
 }
 
 // List
-// @Summary     获取标签列表
-// @Description 获取业务标签列表
-// @Tags 业务标签管理
+// @Summary     获取文章列表
+// @Description 获取文章列表
+// @Tags 文章管理
 // @Accept      json
 // @Produce     json
-// @Param       _  query    dto.ListTagReq  false "标签列表请求参数"
-// @Success     200 {object} []dto.Tag       "标签列表"
+// @Param       _  query    dto.ListPaperReq  false "文章列表请求参数"
+// @Success     200 {object} []dto.Paper       "文章列表"
 // @Failure     400 {object} ginx.HttpError  "失败响应参数"
-// @Router      /tag [get]
+// @Router      /paper [get]
 func (s *Service) List(c *gin.Context) {
-	req := &dto.ListTagReq{}
+	req := &dto.ListPaperReq{}
 	if _, err := validator.BindQueryAndValid(c, req); err != nil {
 		ginx.ResErrJson(c, errorcode.PublicInvalidParameter.Detail(err))
 		return
